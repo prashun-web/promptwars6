@@ -12,9 +12,8 @@
 
 ---
 
-## 📸 Project Preview
+## Project Preview
 
-> *(Add screenshots or GIFs here)*
 
 - Landing Boot Screen
 - Command Dashboard
