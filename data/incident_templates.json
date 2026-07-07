@@ -1,0 +1,102 @@
+{
+  "fire": {
+    "priority": "CRITICAL",
+    "summary": "Localized fire detected in concession area Section 202. Sprinkler system activated. Emergency containment protocols initiated.",
+    "actionPlan": [
+      "Isolate electricity and gas utilities supplying Section 202 concessions.",
+      "Dispatch Local Fire Response Unit and emergency services.",
+      "Clear smoke venting routes in East Plaza.",
+      "Establish primary safety cordon 100 meters around Section 202.",
+      "Initiate phased evacuation of Section 202 towards Gate C."
+    ],
+    "volunteerInstructions": [
+      "Steward Mateo Silva to stand at Section 202 stairs to guide fans away from smoke.",
+      "All active Gate C ushers prepare gates to open wide for exit routing.",
+      "Volunteer Carlos Gomez to assist medical teams at East Medical Hub."
+    ],
+    "paScript": "ATTENTION PLEASE. An operational incident has occurred in Section 202. Please follow instructions from stewards and proceed calmly to Gate C. Do not run. Elevators are disabled for safety. Use stairs.",
+    "exit": "Gate C (South-East Exit)"
+  },
+  "medical": {
+    "priority": "HIGH",
+    "summary": "Cardiac arrest reported in Section 103, Row M. AED dispatch and medical subagent response required immediately.",
+    "actionPlan": [
+      "Alert Medical Hub West and dispatch nearest paramedics.",
+      "Notify Volunteer Yuki Tanaka to guide medical team from Gate E.",
+      "Provide chest compression coaching to bystander on call.",
+      "Clear spectator access walkway in Section 103."
+    ],
+    "volunteerInstructions": [
+      "Yuki Tanaka to immediately fetch AED from elevator bay and move to Sec 103 Row M.",
+      "Amara Diallo to secure elevator at Gate E for paramedic stretcher access."
+    ],
+    "paScript": "NO STADIUM BROADCAST NEEDED. Stewards in Section 103, please clear Row M stairs for emergency access. Bystanders follow first aider directions.",
+    "exit": "Gate E (Elevator Access)"
+  },
+  "security": {
+    "priority": "HIGH",
+    "summary": "Physical altercation / pitch invasion hazard developing near lower bowl barrier in Section 104.",
+    "actionPlan": [
+      "Deploy Security Response Team Bravo to barriers at Section 104.",
+      "Lock down pitch-access gates in Northwest quadrant.",
+      "Isolate CCTV camera feeds 08, 09, 10 to Command Room main screens.",
+      "Notify local police dispatch unit on standby."
+    ],
+    "volunteerInstructions": [
+      "Stewards in adjacent Section 101 to keep spectators in their seats.",
+      "Amara Diallo at Gate F to stand by for emergency police ingress guidance."
+    ],
+    "paScript": "LADIES AND GENTLEMEN. We remind you that entering the field of play is a federal offense. Violators will be prosecuted. Please remain in your seats.",
+    "exit": "Gate F (North-West Exit)"
+  },
+  "lost_child": {
+    "priority": "MEDIUM",
+    "summary": "Separated 7-year-old child (wearing blue jersey, white cap) reported near Gate A concessions.",
+    "actionPlan": [
+      "Initiate Protocol Alpha-Child. Circulate photo/description to volunteer devices.",
+      "Lock down outer gates A and F for visual check-out of departing children.",
+      "Deploy guest services agent to coordinate with parent at Gate A info desk.",
+      "Review CCTV footage around Gate A from last 15 minutes."
+    ],
+    "volunteerInstructions": [
+      "Mateo Silva to check toilets near Gate A.",
+      "Chloe Dupont to monitor Section 102 exit flows for matching description.",
+      "Yuki Tanaka to broadcast description to outer plaza shuttle drivers."
+    ],
+    "paScript": "ATTENTION SPECTATORS. FIFA Guest Services is assisting a young fan named Leo, aged 7, wearing a blue jersey. If you have any information, please report to the nearest Guest Services kiosk.",
+    "exit": "Gate A (Main Info Desk)"
+  },
+  "power": {
+    "priority": "CRITICAL",
+    "summary": "Power grid fluctuation causes partial blackout in lighting grid West (Gates E & F). Auxiliary batteries operational.",
+    "actionPlan": [
+      "Activate stadium backup generator group 2 (West concourses).",
+      "Switch emergency signs and floodlights to battery power.",
+      "Send technical engineering team to substation West.",
+      "Broadcast status update to security staff handhelds."
+    ],
+    "volunteerInstructions": [
+      "All West stewards (Gate E/F) turn on high-visibility LED vests and flashlight wands.",
+      "Chloe Dupont to position at Section 102 entrance to prevent panic during low-light transitions."
+    ],
+    "paScript": "LADIES AND GENTLEMEN. We are experiencing a minor electrical power fluctuation. Back-up systems are online. The match is continuing. Please remain seated.",
+    "exit": "Gate A & D (Fully Illuminated Exits)"
+  },
+  "panic": {
+    "priority": "CRITICAL",
+    "summary": "Sudden crowd crush threat due to blockages at Gate F exit corridor. High congestion alert.",
+    "actionPlan": [
+      "Open all side barriers and auxiliary gates at Gate F corridor.",
+      "Halt incoming flows from Section 104 into Gate F corridor; redirect to Gate A.",
+      "Activate emergency warning boards on concourses.",
+      "Deploy crowd control stewards to Gate F bottleneck."
+    ],
+    "volunteerInstructions": [
+      "Amara Diallo to open emergency exit F-3 manually.",
+      "Chloe Dupont to direct Section 104 egress towards Gate A.",
+      "Mateo Silva to manage the line split at the Gate B/F crossroads."
+    ],
+    "paScript": "ATTENTION ALL FANS. Gate F is heavily congested. For your safety, please follow stewards' instructions and redirect towards Gate A. Repeat, redirect towards Gate A.",
+    "exit": "Gate A (North Exit)"
+  }
+}

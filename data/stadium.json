@@ -1,0 +1,36 @@
+{
+  "gates": [
+    { "id": "A", "name": "Gate A (North)", "x": 300, "y": 70, "density": 0.35, "capacity": 5000, "status": "nominal" },
+    { "id": "B", "name": "Gate B (North-East)", "x": 460, "y": 140, "density": 0.85, "capacity": 6000, "status": "congested" },
+    { "id": "C", "name": "Gate C (South-East)", "x": 460, "y": 460, "density": 0.58, "capacity": 5500, "status": "moderate" },
+    { "id": "D", "name": "Gate D (South)", "x": 300, "y": 530, "density": 0.22, "capacity": 5000, "status": "nominal" },
+    { "id": "E", "name": "Gate E (South-West)", "x": 140, "y": 460, "density": 0.45, "capacity": 5500, "status": "nominal" },
+    { "id": "F", "name": "Gate F (North-West)", "x": 140, "y": 140, "density": 0.92, "capacity": 6000, "status": "critical" }
+  ],
+  "sections": [
+    { "id": "101", "name": "Section 101", "level": "lower", "x": 380, "y": 220, "occupancy": 0.92 },
+    { "id": "102", "name": "Section 102", "level": "lower", "x": 380, "y": 380, "occupancy": 0.88 },
+    { "id": "103", "name": "Section 103", "level": "lower", "x": 220, "y": 380, "occupancy": 0.95 },
+    { "id": "104", "name": "Section 104", "level": "lower", "x": 220, "y": 220, "occupancy": 0.91 },
+    { "id": "201", "name": "Section 201", "level": "mid", "x": 300, "y": 140, "occupancy": 0.78 },
+    { "id": "202", "name": "Section 202", "level": "mid", "x": 460, "y": 300, "occupancy": 0.82 },
+    { "id": "203", "name": "Section 203", "level": "mid", "x": 300, "y": 460, "occupancy": 0.80 },
+    { "id": "204", "name": "Section 204", "level": "mid", "x": 140, "y": 300, "occupancy": 0.74 }
+  ],
+  "pois": [
+    { "id": "wc_north", "name": "Restrooms North", "type": "restroom", "x": 300, "y": 100, "accessible": true },
+    { "id": "wc_south", "name": "Restrooms South", "type": "restroom", "x": 300, "y": 500, "accessible": true },
+    { "id": "wc_east", "name": "Restrooms East", "type": "restroom", "x": 480, "y": 300, "accessible": false },
+    { "id": "wc_west", "name": "Restrooms West", "type": "restroom", "x": 120, "y": 300, "accessible": true },
+    { "id": "med_east", "name": "Medical Station East", "type": "medical", "x": 400, "y": 270, "accessible": true },
+    { "id": "med_west", "name": "Medical Station West", "type": "medical", "x": 200, "y": 330, "accessible": true },
+    { "id": "food_north", "name": "Food Court North", "type": "food", "x": 370, "y": 120, "accessible": true },
+    { "id": "food_south", "name": "Food Court South", "type": "food", "x": 230, "y": 480, "accessible": true },
+    { "id": "concess_east", "name": "Concessions East", "type": "concession", "x": 430, "y": 250, "accessible": true },
+    { "id": "concess_west", "name": "Concessions West", "type": "concession", "x": 170, "y": 350, "accessible": false },
+    { "id": "exit_north", "name": "Emergency Exit North", "type": "exit", "x": 300, "y": 40, "accessible": true },
+    { "id": "exit_south", "name": "Emergency Exit South", "type": "exit", "x": 300, "y": 560, "accessible": true },
+    { "id": "transport_metro", "name": "Metro Transit Station", "type": "transport", "x": 550, "y": 300, "accessible": true },
+    { "id": "transport_bus", "name": "West Bus Terminus", "type": "transport", "x": 50, "y": 300, "accessible": true }
+  ]
+}

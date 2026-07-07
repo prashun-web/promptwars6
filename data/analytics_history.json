@@ -1,0 +1,42 @@
+{
+  "crowdTrend": [
+    { "time": "15:00", "density": 10, "capacity": 0.1 },
+    { "time": "16:00", "density": 25, "capacity": 0.25 },
+    { "time": "17:00", "density": 50, "capacity": 0.50 },
+    { "time": "18:00", "density": 85, "capacity": 0.85 },
+    { "time": "19:00", "density": 94, "capacity": 0.94 },
+    { "time": "20:00", "density": 98, "capacity": 0.98 },
+    { "time": "21:00", "density": 70, "capacity": 0.70 },
+    { "time": "22:00", "density": 20, "capacity": 0.20 }
+  ],
+  "incidents": [
+    { "match": "Match 1", "medical": 2, "security": 1, "other": 0 },
+    { "match": "Match 2", "medical": 4, "security": 0, "other": 1 },
+    { "match": "Match 3", "medical": 1, "security": 3, "other": 2 },
+    { "match": "Match 4 (Quarter)", "medical": 3, "security": 2, "other": 0 },
+    { "match": "Match 5 (Semi)", "medical": 5, "security": 4, "other": 1 },
+    { "match": "Match 6 (Finals)", "medical": 2, "security": 1, "other": 2 }
+  ],
+  "transportTimes": [
+    { "type": "Metro Transit", "queue": 18, "status": "nominal" },
+    { "type": "West Bus Hub", "queue": 32, "status": "congested" },
+    { "type": "Rideshare Lot P4", "queue": 25, "status": "moderate" },
+    { "type": "Pedestrian Walkways", "queue": 5, "status": "nominal" }
+  ],
+  "energyUsage": {
+    "solarGenerationKw": 350,
+    "gridDrawKw": 480,
+    "wasteRecyclingRate": 92,
+    "waterSavedGallons": 12500,
+    "hourlySolar": [
+      { "hour": "12:00", "kw": 300 },
+      { "hour": "13:00", "kw": 420 },
+      { "hour": "14:00", "kw": 450 },
+      { "hour": "15:00", "kw": 380 },
+      { "hour": "16:00", "kw": 290 },
+      { "hour": "17:00", "kw": 180 },
+      { "hour": "18:00", "kw": 40 },
+      { "hour": "19:00", "kw": 0 }
+    ]
+  }
+}

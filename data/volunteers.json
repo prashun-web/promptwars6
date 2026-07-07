@@ -1,0 +1,33 @@
+{
+  "volunteers": [
+    { "id": "VOL-104", "name": "Mateo Silva", "role": "Gate Usher", "location": "Gate B", "status": "Active", "battery": 82, "radioStatus": "Nominal" },
+    { "id": "VOL-210", "name": "Chloe Dupont", "role": "Section Steward", "location": "Section 102", "status": "Active", "battery": 95, "radioStatus": "Nominal" },
+    { "id": "VOL-058", "name": "Yuki Tanaka", "role": "Access Guide", "location": "Gate E (Elevator)", "status": "On Break", "battery": 41, "radioStatus": "Weak Signal" },
+    { "id": "VOL-302", "name": "Carlos Gomez", "role": "First Aid Assist", "location": "Medical Station East", "status": "Transit", "battery": 78, "radioStatus": "Nominal" },
+    { "id": "VOL-115", "name": "Amara Diallo", "role": "Crowd Marshall", "location": "Gate F", "status": "Active", "battery": 63, "radioStatus": "Offline" }
+  ],
+  "tasks": [
+    { "id": "TSK-001", "title": "Inspect Turnstile Scanners", "assignedTo": "Mateo Silva", "priority": "Medium", "status": "Completed", "due": "18:00" },
+    { "id": "TSK-002", "title": "Assist wheelchair access at Gate E elevator", "assignedTo": "Yuki Tanaka", "priority": "High", "status": "In Progress", "due": "18:45" },
+    { "id": "TSK-003", "title": "Gate B Overflow Redirect Coordination", "assignedTo": "Amara Diallo", "priority": "Critical", "status": "Pending", "due": "ASAP" },
+    { "id": "TSK-004", "title": "Check concession lines at East Plaza", "assignedTo": "Unassigned", "priority": "Low", "status": "Unassigned", "due": "19:15" },
+    { "id": "TSK-005", "title": "Deploy signs for Gate D exit paths", "assignedTo": "Carlos Gomez", "priority": "Medium", "status": "In Progress", "due": "19:00" }
+  ],
+  "equipment": [
+    { "name": "Handheld Ticket Scanners", "total": 120, "active": 105, "faulty": 3, "issues": ["Scanner #12: Calibration error at Gate B", "Scanner #45: Laser timeout at Gate F"] },
+    { "name": "Tactical Radios (Ch 4)", "total": 85, "active": 78, "faulty": 2, "issues": ["Unit #08: Microphone failure", "Unit #15: Battery charging fault"] },
+    { "name": "Automated External Defibrillators (AED)", "total": 32, "active": 32, "faulty": 0, "issues": [] },
+    { "name": "High-Visibility LED Vests", "total": 200, "active": 180, "faulty": 0, "issues": [] }
+  ],
+  "troubleshooter": {
+    "scanners": {
+      "reboot": "Hold POWER + SCAN for 10 seconds. Release when green light flashes. Calibration resets automatically on boot.",
+      "offline": "Verify scanner is connected to FIFA-STA-VOL secure Wi-Fi. Check active token validation inside the Settings pane of the scanner app.",
+      "laser": "Clean the scan window with microfiber. If error persists, replace rechargeable battery pack."
+    },
+    "radios": {
+      "static": "Ensure radio is set to Channel 4 (Command & Ops). If signal is poor, elevate antenna or move 5 meters away from massive concrete structural columns.",
+      "battery": "Red blinking light indicates charge is under 15%. Swap with a charged spare battery unit at the volunteer command trailer."
+    }
+  }
+}

@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FIFA AI Command Center — Intelligent Stadium Operations Platform for FIFA World Cup 2026. Real-time AI-powered crowd analytics, security, emergency response, and fan services.">
+  <meta name="theme-color" content="#050811">
+  <title>FIFA AI Command Center · Stadium Operations Platform 2026</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Share+Tech+Mono&family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- BOOT SEQUENCE OVERLAY -->
+  <!-- ============================================ -->
+  <div id="boot-screen" class="boot-screen" role="dialog" aria-modal="true" aria-label="System authentication">
+    <div class="boot-bg-grid" aria-hidden="true"></div>
+    <div class="boot-particles" aria-hidden="true" id="boot-particles"></div>
+
+    <div class="boot-container">
+      <!-- Header -->
+      <div class="boot-header">
+        <div class="boot-logo-ring" aria-hidden="true">
+          <div class="boot-logo-inner">
+            <span class="boot-logo-icon">⚽</span>
+          </div>
+          <svg class="boot-ring-svg" viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="54" class="boot-ring-track"/>
+            <circle cx="60" cy="60" r="54" class="boot-ring-progress" id="boot-ring-progress"/>
+          </svg>
+        </div>
+        <div class="boot-header-text">
+          <h1 class="boot-title">FIFA AI COMMAND CENTER</h1>
+          <p class="boot-subtitle">WORLD CUP 2026 · STADIUM OPERATIONS PLATFORM</p>
+          <div class="boot-version-tag">v4.26.0 · SECURE BOOT · CLASSIFIED</div>
+        </div>
+      </div>
+
+      <!-- Body: Terminal + Controls -->
+      <div class="boot-body">
+        <!-- Terminal log -->
+        <div class="boot-terminal-wrapper">
+          <div class="boot-terminal-header">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">SYSTEM DIAGNOSTICS LOG</span>
+          </div>
+          <div class="boot-terminal" id="boot-log-terminal" role="log" aria-live="polite">
+            <div class="terminal-init-line">&gt; FIFA Security Module initialized. Awaiting biometric authorization...</div>
+          </div>
+        </div>
+
+        <!-- Auth controls -->
+        <div class="boot-controls-wrapper">
+          <!-- Biometric scanner -->
+          <button class="biometric-scanner-btn" id="boot-biometric-btn" aria-label="Activate biometric fingerprint scanner to authorize access">
+            <div class="biometric-rings" aria-hidden="true">
+              <div class="bio-ring bio-ring-1"></div>
+              <div class="bio-ring bio-ring-2"></div>
+              <div class="bio-ring bio-ring-3"></div>
+            </div>
+            <span class="scan-finger-icon" aria-hidden="true">👆</span>
+            <div class="scanner-bar" aria-hidden="true"></div>
+            <span class="scanner-text">TOUCH TO AUTHENTICATE</span>
+          </button>
+
+          <div class="boot-divider">
+            <span>OR</span>
+          </div>
+
+          <!-- Manual login -->
+          <form class="boot-form" id="boot-login-form" aria-label="Manual operator login">
+            <label class="boot-form-label" for="boot-username">Operator ID</label>
+            <input type="text" id="boot-username" class="boot-input" placeholder="Enter operator ID" value="Sofia R." autocomplete="username" required>
+
+            <label class="boot-form-label" for="boot-password">Access Code</label>
+            <input type="password" id="boot-password" class="boot-input" placeholder="Enter access code" value="FIFA-2026-STAD-OPS" autocomplete="current-password" required>
+
+            <button type="submit" class="boot-submit-btn" id="boot-authorize-btn">
+              <span>AUTHORIZE ACCESS</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </form>
+
+          <div class="boot-security-badge">
+            <span>🔒</span>
+            <span>FIFA SECURE NETWORK · STATION CMD-26-N-OPS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- FLOATING NOTIFICATIONS TOASTER -->
+  <!-- ============================================ -->
+  <div id="notification-toaster" class="notification-toaster" aria-live="polite" aria-label="Live operational alerts"></div>
+
+  <!-- Emergency alarm overlay -->
+  <div id="alarm-overlay" class="emergency-alarm-overlay" aria-hidden="true"></div>
+
+  <!-- ============================================ -->
+  <!-- TOP NAVIGATION HEADER -->
+  <!-- ============================================ -->
+  <header class="layout-header" role="banner">
+    <!-- Left: Logo + Brand -->
+    <div class="logo-container">
+      <div class="logo-icon" aria-hidden="true">
+        <span>⚽</span>
+      </div>
+      <div class="logo-text-group">
+        <span class="logo-text">FIFA AI Command Center</span>
+        <span class="logo-tagline">Stadium Operations Platform</span>
+      </div>
+    </div>
+
+    <!-- Center: Match + Stadium Info -->
+    <div class="header-center" role="status" aria-label="Current match information">
+      <div class="match-info-widget">
+        <div class="live-pulse-dot" aria-hidden="true"></div>
+        <div class="match-score-display">
+          <span class="match-team">ARG</span>
+          <span class="match-score" id="match-score-home">2</span>
+          <span class="match-separator">–</span>
+          <span class="match-score" id="match-score-away">2</span>
+          <span class="match-team">FRA</span>
+        </div>
+        <div class="match-meta">
+          <span id="match-minute-badge" class="match-minute">HT</span>
+          <span class="match-venue">MetLife Stadium · NJ</span>
+        </div>
+      </div>
+
+      <div class="header-center-divider" aria-hidden="true"></div>
+
+      <div class="header-telemetry">
+        <div class="header-tel-item">
+          <span class="header-tel-label">TIME</span>
+          <span class="header-tel-value mono" id="hud-clock">--:--:--</span>
+        </div>
+        <div class="header-tel-item">
+          <span class="header-tel-label">WEATHER</span>
+          <span class="header-tel-value" id="hud-weather">☀️ 24°C</span>
+        </div>
+        <div class="header-tel-item">
+          <span class="header-tel-label">STATUS</span>
+          <span class="header-tel-value" id="hud-system-status-badge">
+            <span class="status-dot green" aria-hidden="true"></span>
+            OPERATIONAL
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Actions + Profile -->
+    <div class="header-right">
+      <button class="header-icon-btn" id="notif-bell" aria-label="View notifications" title="Notifications">
+        <span aria-hidden="true">🔔</span>
+        <span class="notification-badge" id="notif-badge" aria-label="3 unread notifications">3</span>
+      </button>
+
+      <button class="header-icon-btn" aria-label="System settings" title="Settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </button>
+
+      <div class="operator-profile" role="img" aria-label="Logged in as Lead Operator Sofia R.">
+        <div class="operator-avatar" aria-hidden="true">SR</div>
+        <div class="operator-info">
+          <span class="operator-name">Sofia R.</span>
+          <span class="operator-role">Lead Operator</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- MAIN LAYOUT GRID -->
+  <!-- ============================================ -->
+  <div class="layout-container">
+
+    <!-- LEFT SIDEBAR NAVIGATION -->
+    <aside class="sidebar" aria-label="Operations Navigation Menu">
+      <nav aria-label="Main navigation">
+        <ul class="nav-list" role="list">
+          <li class="nav-item active" data-tab="dashboard" role="listitem">
+            <button aria-label="Dashboard Overview" aria-current="page">
+              <span class="nav-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              </span>
+              <span class="nav-label">Dashboard</span>
+            </button>
+          </li>
+          <li class="nav-item" data-tab="crowd" role="listitem">
+            <button aria-label="Crowd Intelligence module">
+              <span class="nav-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </span>
+              <span class="nav-label">Crowd Intel</span>
+              <span class="nav-alert-dot" aria-label="Alert" aria-hidden="true"></span>
+            </button>
+          </li>
+          <li class="nav-item" data-tab="navigation" role="listitem">
+            <button aria-label="Smart Navigation routing">
+              <span class="nav-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="3,11 22,2 13,21 11,13 3,11"/></svg>
+              </span>
+              <span class="nav-label">Navigation</span>
+            </button>
+          </li>
+          <li class="nav-item" data-tab="emergency" role="listitem">
+            <button aria-label="Emergency Command Center">
+              <span class="nav-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </span>
+              <span class="nav-label">Emergency Ops</span>
+            </button>
+          </li>
+          <li class="nav-item" data-tab="volunteer" role="listitem">
+            <button aria-label="Volunteer Hub management">
+              <span class="nav-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </span>
+              <span class="nav-label">Volunteer Hub</span>
+            </button>
+          </li>
+          <li class="nav-item" data-tab="fan" role="listitem">
+            <button aria-label="Fan Assistant AI chatbot">
+              <span class="nav-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </span>
+              <span class="nav-label">Fan Assistant</span>
+            </button>
+          </li>
+          <li class="nav-item" data-tab="translation" role="listitem">
+            <button aria-label="AI Multi-language Translator">
+              <span class="nav-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </span>
+              <span class="nav-label">AI Translator</span>
+            </button>
+          </li>
+          <li class="nav-item" data-tab="sustainability" role="listitem">
+            <button aria-label="Sustainability monitor">
+              <span class="nav-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 3l14 9-14 9V3z"/></svg>
+              </span>
+              <span class="nav-label">Sustainability</span>
+            </button>
+          </li>
+          <li class="nav-item" data-tab="analytics" role="listitem">
+            <button aria-label="Executive Analytics and Reports">
+              <span class="nav-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              </span>
+              <span class="nav-label">Analytics</span>
+            </button>
+          </li>
+          <li class="nav-item nav-item-settings" data-tab="settings" role="listitem">
+            <button aria-label="System Configuration Settings">
+              <span class="nav-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              </span>
+              <span class="nav-label">Settings</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar bottom status -->
+      <div class="sidebar-footer">
+        <div class="sidebar-system-health">
+          <div class="sys-health-item">
+            <span class="sys-dot green" aria-hidden="true"></span>
+            <span>AI Engine</span>
+          </div>
+          <div class="sys-health-item">
+            <span class="sys-dot green" aria-hidden="true"></span>
+            <span>Sensor Mesh</span>
+          </div>
+          <div class="sys-health-item">
+            <span class="sys-dot yellow" aria-hidden="true"></span>
+            <span>CCTV Feed</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN VIEWPORT -->
+    <main class="main-viewport" id="main-viewport">
+
+      <!-- ============================================ -->
+      <!-- MODULE: MAIN DASHBOARD -->
+      <!-- ============================================ -->
+      <section id="module-dashboard" class="viewport-module active" aria-label="Dashboard overview">
+
+        <!-- Hero heading -->
+        <div class="dashboard-hero" aria-labelledby="dashboard-title">
+          <div class="dashboard-hero-text">
+            <h2 id="dashboard-title" class="dashboard-heading">FIFA AI Command Center</h2>
+            <p class="dashboard-subheading">AI-powered Stadium Operations Platform for FIFA World Cup 2026</p>
+          </div>
+          <div class="dashboard-hero-actions">
+            <button class="action-btn primary" id="btn-gen-emergency" aria-label="Generate Emergency Plan">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+              Emergency Plan
+            </button>
+            <button class="action-btn secondary" id="btn-announcement" aria-label="Create Announcement">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+              Announcement
+            </button>
+            <button class="action-btn secondary" id="btn-heatmap" aria-label="View Crowd Heatmap">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+              Crowd Heatmap
+            </button>
+            <button class="action-btn secondary" id="btn-export" aria-label="Export Report">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export Report
+            </button>
+          </div>
+        </div>
+
+        <!-- Stadium Status Card + KPI Row -->
+        <div class="stadium-status-row">
+          <!-- Main Stadium Status -->
+          <div class="stadium-status-card glass-card" aria-label="Stadium operational status">
+            <div class="status-card-header">
+              <div class="status-indicator-group">
+                <span class="status-pulse green" aria-hidden="true"></span>
+                <span class="status-label">Stadium Status</span>
+              </div>
+              <span class="status-value-badge green">OPERATIONAL</span>
+            </div>
+            <div class="status-metrics-grid">
+              <div class="status-metric">
+                <div class="status-metric-label">Match Starts In</div>
+                <div class="status-metric-value mono" id="match-countdown">01:24:36</div>
+              </div>
+              <div class="status-metric">
+                <div class="status-metric-label">Fans Inside</div>
+                <div class="status-metric-value mono" id="fans-inside-count">68,450</div>
+              </div>
+              <div class="status-metric">
+                <div class="status-metric-label">Capacity</div>
+                <div class="status-metric-value mono">82,500</div>
+              </div>
+              <div class="status-metric">
+                <div class="status-metric-label">Crowd Density</div>
+                <div class="status-metric-value mono" id="density-pct">
+                  <span id="density-val">78</span>%
+                  <div class="density-bar">
+                    <div class="density-fill" id="density-fill" style="width:78%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- KPI Cards -->
+          <div class="kpi-strip" aria-label="Key Performance Indicators">
+            <div class="kpi-card glass-card" tabindex="0" aria-label="Fans Inside: 68,450 — up trend">
+              <div class="kpi-icon">👥</div>
+              <div class="kpi-content">
+                <div class="kpi-label">Fans Inside</div>
+                <div class="kpi-value-big" id="kpi-fans">68,450</div>
+                <div class="kpi-trend up">↑ +2.1%</div>
+              </div>
+              <svg class="kpi-sparkline" viewBox="0 0 60 30" aria-hidden="true">
+                <polyline class="sparkline-line" points="0,25 10,20 20,22 30,15 40,18 50,10 60,8"/>
+              </svg>
+            </div>
+
+            <div class="kpi-card glass-card" tabindex="0" aria-label="Active Gates: 5 of 6 operational">
+              <div class="kpi-icon">🚪</div>
+              <div class="kpi-content">
+                <div class="kpi-label">Active Gates</div>
+                <div class="kpi-value-big">5 / 6</div>
+                <div class="kpi-trend warning">⚠ Gate F congested</div>
+              </div>
+              <div class="kpi-ring" aria-hidden="true">
+                <svg viewBox="0 0 36 36">
+                  <circle class="ring-bg" cx="18" cy="18" r="15.9"/>
+                  <circle class="ring-fill green" cx="18" cy="18" r="15.9" stroke-dasharray="83 17"/>
+                </svg>
+                <span class="ring-label">83%</span>
+              </div>
+            </div>
+
+            <div class="kpi-card glass-card" tabindex="0" aria-label="Medical Incidents: 0 active">
+              <div class="kpi-icon">🚑</div>
+              <div class="kpi-content">
+                <div class="kpi-label">Medical Incidents</div>
+                <div class="kpi-value-big ok" id="kpi-medical">0</div>
+                <div class="kpi-trend ok">✓ All units ready</div>
+              </div>
+              <svg class="kpi-sparkline" viewBox="0 0 60 30" aria-hidden="true">
+                <polyline class="sparkline-line green" points="0,28 10,28 20,28 30,5 40,28 50,28 60,28"/>
+              </svg>
+            </div>
+
+            <div class="kpi-card glass-card" tabindex="0" aria-label="Security Alerts: 1 active">
+              <div class="kpi-icon">🚓</div>
+              <div class="kpi-content">
+                <div class="kpi-label">Security Alerts</div>
+                <div class="kpi-value-big warning" id="kpi-security">1</div>
+                <div class="kpi-trend warning">↑ Gate F review</div>
+              </div>
+              <div class="kpi-ring" aria-hidden="true">
+                <svg viewBox="0 0 36 36">
+                  <circle class="ring-bg" cx="18" cy="18" r="15.9"/>
+                  <circle class="ring-fill yellow" cx="18" cy="18" r="15.9" stroke-dasharray="15 85"/>
+                </svg>
+                <span class="ring-label">Low</span>
+              </div>
+            </div>
+
+            <div class="kpi-card glass-card" tabindex="0" aria-label="Transport Status: 92% on-time">
+              <div class="kpi-icon">🚆</div>
+              <div class="kpi-content">
+                <div class="kpi-label">Transport</div>
+                <div class="kpi-value-big ok" id="kpi-transport">92%</div>
+                <div class="kpi-trend ok">✓ Metro on schedule</div>
+              </div>
+              <svg class="kpi-sparkline" viewBox="0 0 60 30" aria-hidden="true">
+                <polyline class="sparkline-line" points="0,20 10,22 20,18 30,15 40,12 50,14 60,10"/>
+              </svg>
+            </div>
+
+            <div class="kpi-card glass-card" tabindex="0" aria-label="Energy Usage: 480 kW net draw">
+              <div class="kpi-icon">⚡</div>
+              <div class="kpi-content">
+                <div class="kpi-label">Energy Usage</div>
+                <div class="kpi-value-big mono" id="kpi-energy">480 kW</div>
+                <div class="kpi-trend ok">Solar: 350 kW offset</div>
+              </div>
+              <div class="kpi-ring" aria-hidden="true">
+                <svg viewBox="0 0 36 36">
+                  <circle class="ring-bg" cx="18" cy="18" r="15.9"/>
+                  <circle class="ring-fill blue" cx="18" cy="18" r="15.9" stroke-dasharray="58 42"/>
+                </svg>
+                <span class="ring-label">58%</span>
+              </div>
+            </div>
+
+            <div class="kpi-card glass-card" tabindex="0" aria-label="Weather: Clear, 24 degrees Celsius">
+              <div class="kpi-icon">🌤</div>
+              <div class="kpi-content">
+                <div class="kpi-label">Weather</div>
+                <div class="kpi-value-big" id="kpi-weather">24°C</div>
+                <div class="kpi-trend ok">Clear · Wind 12 km/h</div>
+              </div>
+              <svg class="kpi-sparkline" viewBox="0 0 60 30" aria-hidden="true">
+                <polyline class="sparkline-line blue" points="0,15 10,14 20,16 30,15 40,13 50,15 60,14"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main content row: Stadium Map + Logs + Timeline -->
+        <div class="dashboard-main-grid">
+
+          <!-- Stadium Digital Twin -->
+          <div class="glass-card stadium-twin-card" aria-label="Interactive stadium digital twin">
+            <div class="card-header">
+              <div class="card-title">
+                <span class="card-tag">TWIN</span>
+                Stadium Digital Twin — Live Telemetry
+              </div>
+              <div class="card-header-actions">
+                <span class="live-badge" aria-label="Live data">● LIVE</span>
+              </div>
+            </div>
+
+            <div class="stadium-container">
+              <svg class="stadium-svg" viewBox="0 0 600 600" role="img" aria-label="Interactive top-down stadium map showing gates and sections">
+                <defs>
+                  <radialGradient id="field-grad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#1a4a2e"/>
+                    <stop offset="100%" stop-color="#143d26"/>
+                  </radialGradient>
+                  <filter id="gate-glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="3" result="blur"/>
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                  <!-- Animated crowd flow gradient -->
+                  <linearGradient id="flow-grad-a" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="50%" stop-color="#00f0ff" stop-opacity="0.8"/>
+                    <stop offset="100%" stop-color="transparent"/>
+                  </linearGradient>
+                </defs>
+
+                <!-- Outer stadium ring -->
+                <ellipse cx="300" cy="300" rx="265" ry="265" class="svg-outer-ring"/>
+                <ellipse cx="300" cy="300" rx="240" ry="240" class="svg-inner-ring"/>
+
+                <!-- Seating sections - Level 100 -->
+                <path id="svg-sec-101" d="M 310 240 L 390 160 A 130 130 0 0 1 440 300 L 360 300 Z" class="svg-section-polygon"/>
+                <path id="svg-sec-102" d="M 360 300 L 440 300 A 130 130 0 0 1 390 440 L 310 360 Z" class="svg-section-polygon"/>
+                <path id="svg-sec-103" d="M 290 360 L 210 440 A 130 130 0 0 1 160 300 L 240 300 Z" class="svg-section-polygon"/>
+                <path id="svg-sec-104" d="M 240 300 L 160 300 A 130 130 0 0 1 210 160 L 290 240 Z" class="svg-section-polygon"/>
+
+                <!-- Seating sections - Level 200 -->
+                <path id="svg-sec-201" d="M 210 150 A 140 140 0 0 1 390 150 L 410 120 A 180 180 0 0 0 190 120 Z" class="svg-section-polygon outer-section"/>
+                <path id="svg-sec-202" d="M 450 170 A 140 140 0 0 1 450 430 L 490 470 A 180 180 0 0 0 490 130 Z" class="svg-section-polygon outer-section"/>
+                <path id="svg-sec-203" d="M 390 450 A 140 140 0 0 1 210 450 L 190 480 A 180 180 0 0 0 410 480 Z" class="svg-section-polygon outer-section"/>
+                <path id="svg-sec-204" d="M 150 430 A 140 140 0 0 1 150 170 L 110 130 A 180 180 0 0 0 110 470 Z" class="svg-section-polygon outer-section"/>
+
+                <!-- Football pitch -->
+                <rect x="225" y="248" width="150" height="104" fill="url(#field-grad)" rx="3" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <line x1="300" y1="248" x2="300" y2="352" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <circle cx="300" cy="300" r="28" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <circle cx="300" cy="300" r="3" fill="rgba(255,255,255,0.15)"/>
+
+                <!-- Animated crowd flow paths -->
+                <path d="M 300 70 Q 370 150 440 300" class="flow-path" id="flow-path-a"/>
+                <path d="M 300 70 Q 230 150 160 300" class="flow-path" id="flow-path-b"/>
+                <path d="M 300 530 Q 370 450 440 300" class="flow-path" id="flow-path-c"/>
+                <path d="M 300 530 Q 230 450 160 300" class="flow-path" id="flow-path-d"/>
+
+                <!-- Navigation route path -->
+                <path id="svg-nav-path" d="" class="navigation-path"/>
+
+                <!-- POI Markers -->
+                <text x="300" y="98" font-size="14" text-anchor="middle" class="svg-poi-marker" id="svg-poi-wc_north">🚽</text>
+                <text x="300" y="502" font-size="14" text-anchor="middle" class="svg-poi-marker" id="svg-poi-wc_south">🚽</text>
+                <text x="478" y="305" font-size="14" text-anchor="middle" class="svg-poi-marker" id="svg-poi-wc_east">🚽</text>
+                <text x="122" y="305" font-size="14" text-anchor="middle" class="svg-poi-marker" id="svg-poi-wc_west">🚽</text>
+                <text x="400" y="275" font-size="14" text-anchor="middle" class="svg-poi-marker" id="svg-poi-med_east">🏥</text>
+                <text x="200" y="335" font-size="14" text-anchor="middle" class="svg-poi-marker" id="svg-poi-med_west">🏥</text>
+                <text x="370" y="118" font-size="13" text-anchor="middle" class="svg-poi-marker" id="svg-poi-food_north">🍔</text>
+                <text x="230" y="482" font-size="13" text-anchor="middle" class="svg-poi-marker" id="svg-poi-food_south">🍔</text>
+                <text x="300" y="42" font-size="13" text-anchor="middle" class="svg-poi-marker" id="svg-poi-exit_north">🚪</text>
+                <text x="300" y="562" font-size="13" text-anchor="middle" class="svg-poi-marker" id="svg-poi-exit_south">🚪</text>
+                <text x="550" y="305" font-size="16" text-anchor="middle" class="svg-poi-marker" id="svg-poi-transport_metro">🚇</text>
+                <text x="50" y="305" font-size="16" text-anchor="middle" class="svg-poi-marker" id="svg-poi-transport_bus">🚌</text>
+
+                <!-- Gate Nodes -->
+                <g id="svg-gate-A" class="svg-gate-group" tabindex="0" role="button" aria-label="Gate A - North - Low congestion">
+                  <circle cx="300" cy="70" r="16" class="svg-gate-glow" fill="var(--neon-green)" opacity="0.2"/>
+                  <circle cx="300" cy="70" r="11" class="svg-gate-point" fill="var(--neon-green)" filter="url(#gate-glow)"/>
+                  <text x="300" y="74" class="svg-gate-label">A</text>
+                </g>
+                <g id="svg-gate-B" class="svg-gate-group" tabindex="0" role="button" aria-label="Gate B - North-East - High congestion">
+                  <circle cx="460" cy="140" r="16" class="svg-gate-glow" fill="var(--neon-orange)" opacity="0.25"/>
+                  <circle cx="460" cy="140" r="11" class="svg-gate-point" fill="var(--neon-orange)" filter="url(#gate-glow)"/>
+                  <text x="460" y="144" class="svg-gate-label">B</text>
+                </g>
+                <g id="svg-gate-C" class="svg-gate-group" tabindex="0" role="button" aria-label="Gate C - South-East - Moderate congestion">
+                  <circle cx="460" cy="460" r="16" class="svg-gate-glow" fill="var(--neon-yellow)" opacity="0.25"/>
+                  <circle cx="460" cy="460" r="11" class="svg-gate-point" fill="var(--neon-yellow)" filter="url(#gate-glow)"/>
+                  <text x="460" y="464" class="svg-gate-label">C</text>
+                </g>
+                <g id="svg-gate-D" class="svg-gate-group" tabindex="0" role="button" aria-label="Gate D - South - Low congestion">
+                  <circle cx="300" cy="530" r="16" class="svg-gate-glow" fill="var(--neon-green)" opacity="0.2"/>
+                  <circle cx="300" cy="530" r="11" class="svg-gate-point" fill="var(--neon-green)" filter="url(#gate-glow)"/>
+                  <text x="300" y="534" class="svg-gate-label">D</text>
+                </g>
+                <g id="svg-gate-E" class="svg-gate-group" tabindex="0" role="button" aria-label="Gate E - South-West - Low congestion">
+                  <circle cx="140" cy="460" r="16" class="svg-gate-glow" fill="var(--neon-green)" opacity="0.2"/>
+                  <circle cx="140" cy="460" r="11" class="svg-gate-point" fill="var(--neon-green)" filter="url(#gate-glow)"/>
+                  <text x="140" y="464" class="svg-gate-label">E</text>
+                </g>
+                <g id="svg-gate-F" class="svg-gate-group" tabindex="0" role="button" aria-label="Gate F - North-West - Critical congestion">
+                  <circle cx="140" cy="140" r="16" class="svg-gate-glow" fill="var(--neon-red)" opacity="0.35"/>
+                  <circle cx="140" cy="140" r="11" class="svg-gate-point gate-critical" fill="var(--neon-red)" filter="url(#gate-glow)"/>
+                  <text x="140" y="144" class="svg-gate-label">F</text>
+                </g>
+              </svg>
+
+              <!-- Gate tooltip overlay -->
+              <div id="gate-tooltip" class="gate-tooltip" role="tooltip" aria-hidden="true">
+                <div class="gate-tooltip-header">
+                  <span class="gate-tooltip-name" id="tooltip-gate-name">Gate A</span>
+                  <span class="gate-tooltip-status" id="tooltip-gate-status">NOMINAL</span>
+                </div>
+                <div class="gate-tooltip-body">
+                  <div class="tooltip-metric"><span>Crowd</span><strong id="tooltip-crowd">—</strong></div>
+                  <div class="tooltip-metric"><span>Queue Time</span><strong id="tooltip-queue">—</strong></div>
+                  <div class="tooltip-metric"><span>Occupancy</span><strong id="tooltip-occ">—</strong></div>
+                  <div class="tooltip-metric"><span>Security Level</span><strong id="tooltip-security">—</strong></div>
+                  <div class="tooltip-metric"><span>Medical Team</span><strong id="tooltip-medical">—</strong></div>
+                </div>
+                <div class="gate-tooltip-ai" id="tooltip-ai-rec">
+                  <span class="tooltip-ai-label">🤖 AI</span>
+                  <span id="tooltip-ai-text">—</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Map legend -->
+            <div class="map-legend" aria-label="Map legend">
+              <span class="legend-item"><span class="legend-dot" style="background:var(--neon-green)"></span>Low</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--neon-yellow)"></span>Moderate</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--neon-orange)"></span>High</span>
+              <span class="legend-item"><span class="legend-dot" style="background:var(--neon-red)"></span>Critical</span>
+            </div>
+          </div>
+
+          <!-- Right column: Logs + CCTV + Timeline -->
+          <div class="dashboard-right-col">
+
+            <!-- Operations Command Logs -->
+            <div class="glass-card logs-card">
+              <div class="card-header">
+                <div class="card-title">
+                  <span class="card-tag">OPS</span>
+                  Operations Command Log
+                </div>
+                <span class="live-badge">● LIVE</span>
+              </div>
+              <div class="hud-logs" id="hud-logs-wrapper" role="log" aria-live="polite" aria-label="Live operations log"></div>
+            </div>
+
+            <!-- CCTV Feeds -->
+            <div class="glass-card cctv-card">
+              <div class="card-header">
+                <div class="card-title">
+                  <span class="card-tag">CCTV</span>
+                  Live Camera Analysis
+                </div>
+              </div>
+              <div class="cameras-grid">
+                <div class="camera-feed">
+                  <div class="camera-scanline" aria-hidden="true"></div>
+                  <div class="camera-overlay">
+                    <span>CAM 02 · GATE F</span>
+                    <span class="cam-fps">30.0 fps</span>
+                  </div>
+                  <svg viewBox="0 0 160 90" class="camera-video-mock" aria-hidden="true">
+                    <rect width="160" height="90" fill="#060d1a"/>
+                    <circle cx="40" cy="55" r="5" fill="#1e293b"/>
+                    <circle cx="58" cy="52" r="5" fill="#1e293b"/>
+                    <circle cx="76" cy="50" r="5" fill="#1e293b"/>
+                    <circle cx="94" cy="53" r="5" fill="#1e293b"/>
+                    <circle cx="112" cy="50" r="5" fill="var(--neon-red)" class="heatmap-pulse"/>
+                    <circle cx="128" cy="54" r="5" fill="var(--neon-red)" class="heatmap-pulse"/>
+                  </svg>
+                  <div class="camera-analysis alert">⚠ BOTTLENECK DETECTED</div>
+                </div>
+                <div class="camera-feed">
+                  <div class="camera-scanline" aria-hidden="true"></div>
+                  <div class="camera-overlay">
+                    <span>CAM 05 · GATE B</span>
+                    <span class="cam-fps">30.0 fps</span>
+                  </div>
+                  <svg viewBox="0 0 160 90" class="camera-video-mock" aria-hidden="true">
+                    <rect width="160" height="90" fill="#060d1a"/>
+                    <circle cx="45" cy="48" r="5" fill="#1e293b"/>
+                    <circle cx="65" cy="52" r="5" fill="#1e293b"/>
+                    <circle cx="85" cy="47" r="5" fill="#1e293b"/>
+                    <circle cx="105" cy="50" r="5" fill="var(--neon-orange)"/>
+                    <circle cx="125" cy="48" r="5" fill="var(--neon-orange)"/>
+                  </svg>
+                  <div class="camera-analysis warn">QUEUE &gt; 12 MIN</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live Event Timeline -->
+            <div class="glass-card timeline-card">
+              <div class="card-header">
+                <div class="card-title">
+                  <span class="card-tag">LOG</span>
+                  Live Event Timeline
+                </div>
+              </div>
+              <div class="event-timeline" id="event-timeline" role="log" aria-live="polite" aria-label="Live event timeline"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions Footer Row -->
+        <div class="quick-actions-bar glass-card" role="group" aria-label="Quick action buttons">
+          <span class="qa-label">⚡ Quick Actions</span>
+          <div class="qa-buttons">
+            <button class="qa-btn" id="qa-emergency" aria-label="Generate Emergency Plan">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+              Generate Emergency Plan
+            </button>
+            <button class="qa-btn" id="qa-announce" aria-label="Create Announcement">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/></svg>
+              Create Announcement
+            </button>
+            <button class="qa-btn" id="qa-heatmap" aria-label="View Crowd Heatmap">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/></svg>
+              View Crowd Heatmap
+            </button>
+            <button class="qa-btn" id="qa-medical" aria-label="Locate Medical Team">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              Locate Medical Team
+            </button>
+            <button class="qa-btn" id="qa-translate" aria-label="Translate Announcement">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
+              Translate Announcement
+            </button>
+            <button class="qa-btn" id="qa-export" aria-label="Export Report">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/></svg>
+              Export Report
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- MODULE: CROWD INTELLIGENCE -->
+      <!-- ============================================ -->
+      <section id="module-crowd" class="viewport-module" aria-label="Crowd Intelligence">
+        <div class="module-header">
+          <h2 class="module-title">Crowd Flow Control Desk</h2>
+          <span class="module-subtitle">Real-time ingress analytics across all stadium gates</span>
+        </div>
+        <div class="dashboard-grid">
+          <div class="glass-card">
+            <div class="card-header">
+              <div class="card-title"><span class="card-tag">GATES</span> Active Entrance Telemetry</div>
+            </div>
+            <div class="gates-list">
+              <div class="gate-row">
+                <div class="gate-info"><span class="gate-color-dot green"></span><span>Gate A — North</span></div>
+                <div class="gate-bar-wrapper"><div class="gate-bar" style="width:35%"></div></div>
+                <span id="gate-badge-A" class="status-tag green">3m wait</span>
+              </div>
+              <div class="gate-row">
+                <div class="gate-info"><span class="gate-color-dot orange"></span><span>Gate B — North-East</span></div>
+                <div class="gate-bar-wrapper"><div class="gate-bar orange" style="width:80%"></div></div>
+                <span id="gate-badge-B" class="status-tag orange">12m wait</span>
+              </div>
+              <div class="gate-row">
+                <div class="gate-info"><span class="gate-color-dot yellow"></span><span>Gate C — South-East</span></div>
+                <div class="gate-bar-wrapper"><div class="gate-bar yellow" style="width:55%"></div></div>
+                <span id="gate-badge-C" class="status-tag yellow">7m wait</span>
+              </div>
+              <div class="gate-row">
+                <div class="gate-info"><span class="gate-color-dot green"></span><span>Gate D — South</span></div>
+                <div class="gate-bar-wrapper"><div class="gate-bar" style="width:20%"></div></div>
+                <span id="gate-badge-D" class="status-tag green">2m wait</span>
+              </div>
+              <div class="gate-row">
+                <div class="gate-info"><span class="gate-color-dot green"></span><span>Gate E — South-West</span></div>
+                <div class="gate-bar-wrapper"><div class="gate-bar" style="width:42%"></div></div>
+                <span id="gate-badge-E" class="status-tag green">4m wait</span>
+              </div>
+              <div class="gate-row critical-row">
+                <div class="gate-info"><span class="gate-color-dot red"></span><span>Gate F — North-West</span></div>
+                <div class="gate-bar-wrapper"><div class="gate-bar red" style="width:95%"></div></div>
+                <span id="gate-badge-F" class="status-tag red">16m wait ⚠</span>
+              </div>
+            </div>
+            <div id="crowd-detail-panel" style="margin-top:16px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.06)"></div>
+          </div>
+          <div class="glass-card">
+            <div class="card-header">
+              <div class="card-title"><span class="card-tag">AGENT</span> Crowd AI Agent Reasoning</div>
+            </div>
+            <div id="crowd-ai-report" style="font-size:0.92rem; line-height:1.6; min-height:120px;"></div>
+            <div class="action-box" style="margin-top:auto">
+              <p>Click gates on the map to focus AI analysis on specific entrances.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- MODULE: SMART NAVIGATION -->
+      <!-- ============================================ -->
+      <section id="module-navigation" class="viewport-module" aria-label="Smart Navigation">
+        <div class="module-header">
+          <h2 class="module-title">Smart Navigation Dashboard</h2>
+          <span class="module-subtitle">AI-optimized indoor routing with accessibility support</span>
+        </div>
+        <div class="dashboard-grid">
+          <div class="glass-card">
+            <div class="card-header">
+              <div class="card-title"><span class="card-tag">PATH</span> Pathfinding Configuration</div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="display:flex; flex-direction:column; gap:6px;">
+                <label for="nav-start-select" style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">Start Node</label>
+                <select id="nav-start-select" class="themed-select"></select>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:6px;">
+                <label for="nav-end-select" style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">Destination</label>
+                <select id="nav-end-select" class="themed-select"></select>
+              </div>
+              <div class="toggle-row">
+                <span>♿ Wheelchair / Elevator Routing Only</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="nav-access-toggle">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="glass-card" id="nav-summary-panel"></div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- MODULE: EMERGENCY OPS -->
+      <!-- ============================================ -->
+      <section id="module-emergency" class="viewport-module" aria-label="Emergency Operations Center">
+        <div class="module-header">
+          <h2 class="module-title" style="color:var(--neon-red)">Incident Simulation Desk</h2>
+          <button id="emergency-clear-btn" class="action-btn" style="border-color:var(--neon-green); color:var(--neon-green);">✓ Clear All Alarms</button>
+        </div>
+        <div class="emergency-grid" role="group" aria-label="Emergency incident types">
+          <button class="emergency-btn" data-incident="fire" aria-label="Simulate fire hazard"><span>🔥</span>Fire Hazard</button>
+          <button class="emergency-btn" data-incident="medical" aria-label="Simulate medical crisis"><span>❤️</span>Medical Crisis</button>
+          <button class="emergency-btn" data-incident="security" aria-label="Simulate security breach"><span>🛡️</span>Security Breach</button>
+          <button class="emergency-btn" data-incident="lost_child" aria-label="Simulate lost child"><span>👶</span>Lost Child</button>
+          <button class="emergency-btn" data-incident="power" aria-label="Simulate power outage"><span>⚡</span>Power Outage</button>
+          <button class="emergency-btn" data-incident="panic" aria-label="Simulate crowd panic"><span>📢</span>Crowd Panic</button>
+        </div>
+        <div class="dashboard-grid">
+          <div class="glass-card" id="emergency-incident-status"></div>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div class="glass-card" style="flex:1;">
+              <div class="card-header"><div class="card-title"><span class="card-tag">TACT</span> Response Action Checklist</div></div>
+              <div id="emergency-action-plan"></div>
+            </div>
+            <div class="glass-card">
+              <div class="card-header"><div class="card-title"><span class="card-tag">PA</span> Broadcast Announcement Script</div></div>
+              <div id="emergency-pa-script"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- MODULE: VOLUNTEER HUB -->
+      <!-- ============================================ -->
+      <section id="module-volunteer" class="viewport-module" aria-label="Volunteer Hub">
+        <div class="module-header">
+          <h2 class="module-title">Volunteer Logistics Board</h2>
+          <span class="module-subtitle">Steward assignments, shift duty tracking, and equipment status</span>
+        </div>
+        <div class="volunteer-grid">
+          <div class="glass-card">
+            <div class="card-header"><div class="card-title"><span class="card-tag">TASK</span> Shift Duty Assignments</div></div>
+            <div class="task-list-wrapper" id="volunteer-task-list"></div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div class="glass-card">
+              <div class="card-header"><div class="card-title"><span class="card-tag">CHAT</span> Equipment AI Troubleshooter</div></div>
+              <form id="vol-trouble-form" style="display:flex; gap:8px; margin-bottom:12px;">
+                <input type="text" id="vol-trouble-input" placeholder="e.g. 'scanner offline', 'radio static'..." class="themed-input" aria-label="Describe equipment issue">
+                <button type="submit" class="action-btn primary" style="white-space:nowrap; padding:0 14px;">Solve</button>
+              </form>
+              <div id="vol-trouble-result"></div>
+            </div>
+            <div class="glass-card" style="flex:1;">
+              <div class="card-header"><div class="card-title"><span class="card-tag">ROST</span> Staff Roster</div></div>
+              <div id="volunteer-roster" style="max-height:220px; overflow-y:auto;"></div>
+            </div>
+            <div class="glass-card">
+              <div class="card-header"><div class="card-title"><span class="card-tag">HARD</span> Equipment Status</div></div>
+              <div id="volunteer-equipment"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- MODULE: FAN ASSISTANT -->
+      <!-- ============================================ -->
+      <section id="module-fan" class="viewport-module" aria-label="Fan Assistant">
+        <div class="module-header">
+          <h2 class="module-title">Fan Q&amp;A Assistant</h2>
+          <span class="module-subtitle">AI-powered spectator support in multiple languages</span>
+        </div>
+        <div class="dashboard-grid">
+          <div class="glass-card" style="display:flex; flex-direction:column; height:420px; padding:0;">
+            <div class="card-header" style="padding:16px; margin-bottom:0;">
+              <div class="card-title"><span class="card-tag">CHAT</span> AI Spectator Chatbot</div>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <label for="fan-speech-toggle" style="font-size:0.75rem; color:var(--text-muted);">🔊 TTS</label>
+                <label class="toggle-switch" style="width:34px; height:18px;">
+                  <input type="checkbox" id="fan-speech-toggle">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+            <div class="ai-chat-history" id="fan-chat-messages" style="flex-grow:1;" role="log" aria-live="polite"></div>
+            <form class="ai-input-form" id="fan-chat-form">
+              <input type="text" class="themed-input" id="fan-chat-input" placeholder="Ask anything: 'wheelchair gate', 'nearest washroom'..." aria-label="Ask the Fan AI Assistant">
+              <button class="ai-send-btn" type="submit" aria-label="Send">➔</button>
+            </form>
+          </div>
+          <div class="glass-card" style="display:flex; flex-direction:column;">
+            <div class="card-header"><div class="card-title"><span class="card-tag">PRESET</span> Quick Questions</div></div>
+            <div style="display:flex; flex-direction:column; gap:8px; flex:1;">
+              <button class="quick-question-btn" aria-label="Nearest washroom">🚽 Nearest washroom location</button>
+              <button class="quick-question-btn" aria-label="Vegetarian food">🥗 Vegetarian food concessions</button>
+              <button class="quick-question-btn" aria-label="Wheelchair gates">♿ Wheelchair access gates</button>
+              <button class="quick-question-btn" aria-label="Report lost child">👶 Report lost child</button>
+              <button class="quick-question-btn" aria-label="Parking details">🚗 Parking garage info</button>
+              <button class="quick-question-btn" aria-label="Find seat">🏟️ Find my seat section</button>
+              <button class="quick-question-btn" aria-label="Medical help">🏥 Medical assistance</button>
+            </div>
+            <div class="action-box" style="margin-top:12px;">
+              <p>TTS synthesizes speech for assistive screen-readers automatically.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- MODULE: AI TRANSLATOR -->
+      <!-- ============================================ -->
+      <section id="module-translation" class="viewport-module" aria-label="AI Translator">
+        <div class="module-header">
+          <h2 class="module-title">Multi-Language Broadcast Desk</h2>
+          <span class="module-subtitle">Real-time PA announcement translation for 7+ languages</span>
+        </div>
+        <div class="dashboard-grid">
+          <div class="glass-card" style="display:flex; flex-direction:column; gap:12px;">
+            <div class="card-header"><div class="card-title"><span class="card-tag">SRC</span> English Bulletin Source</div></div>
+            <textarea id="trans-source-text" class="themed-textarea" rows="6" aria-label="Enter announcement text in English to translate"></textarea>
+            <div class="card-header" style="margin-top:8px;"><div class="card-title"><span class="card-tag">LANG</span> Target Language</div></div>
+            <div class="lang-grid">
+              <button class="lang-btn active" data-lang="es">Español</button>
+              <button class="lang-btn" data-lang="fr">Français</button>
+              <button class="lang-btn" data-lang="ar">العربية</button>
+              <button class="lang-btn" data-lang="hi">हिन्दी</button>
+              <button class="lang-btn" data-lang="pt">Português</button>
+              <button class="lang-btn" data-lang="de">Deutsch</button>
+              <button class="lang-btn" data-lang="ja">日本語</button>
+            </div>
+          </div>
+          <div class="glass-card">
+            <div class="card-header"><div class="card-title"><span class="card-tag">OUT</span> Translation Output</div></div>
+            <div id="trans-result-panel" class="translation-result" tabindex="0" role="region" aria-live="polite" aria-label="Translated announcement"></div>
+            <div class="action-box" style="margin-top:16px;">
+              <p><strong>AI Note:</strong> Context-aware model active. Emergency announcements optimized for safety terminology.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- MODULE: SUSTAINABILITY -->
+      <!-- ============================================ -->
+      <section id="module-sustainability" class="viewport-module" aria-label="Sustainability Dashboard">
+        <div class="module-header">
+          <h2 class="module-title">Sustainability Operations</h2>
+          <span class="module-subtitle">Clean energy tracking, water conservation, and eco-impact metrics</span>
+        </div>
+        <div class="sustainability-grid">
+          <div class="glass-card">
+            <div class="card-header"><div class="card-title"><span class="card-tag">POWR</span> Clean Power Balance</div></div>
+            <div id="chart-energy-draw"></div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div class="glass-card">
+              <div class="card-header"><div class="card-title"><span class="card-tag">KPI</span> Sustainability Metrics</div></div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                <div class="stat-block"><span>Waste Recycled</span><strong style="color:var(--neon-green)">92%</strong></div>
+                <div class="stat-block"><span>Water Saved</span><strong style="color:var(--neon-blue)">12.5k Gal</strong></div>
+                <div class="stat-block"><span>CO₂ Offset</span><strong style="color:var(--neon-green)">4.2t</strong></div>
+                <div class="stat-block"><span>Solar %</span><strong style="color:var(--neon-yellow)">42%</strong></div>
+              </div>
+            </div>
+            <div class="glass-card" style="flex:1;">
+              <div class="card-header"><div class="card-title"><span class="card-tag">ECO</span> AI Sustainability Directives</div></div>
+              <div class="sustainability-log-list">
+                <div class="sustainability-log-item"><span>[01]</span> Reduce brightness on Section E pitch spot grids by 10% during halftime.</div>
+                <div class="sustainability-log-item"><span>[02]</span> Direct Lot P4 EV chargers to throttle draw during peak grid minutes.</div>
+                <div class="sustainability-log-item"><span>[03]</span> Shift water reclamation pumps in South concourses to eco-cycle mode.</div>
+                <div class="sustainability-log-item"><span>[04]</span> Activate passive cooling in Sections 201–204 via shade deployment.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- MODULE: ANALYTICS -->
+      <!-- ============================================ -->
+      <section id="module-analytics" class="viewport-module" aria-label="Analytics and Reports">
+        <div class="module-header">
+          <h2 class="module-title">Executive Command Briefing</h2>
+          <span class="module-subtitle">AI-generated analytics, trends, and executive summaries</span>
+        </div>
+        <div class="analytics-dashboard-grid">
+          <div class="glass-card">
+            <div class="card-header"><div class="card-title"><span class="card-tag">CURV</span> Attendance Density Trend</div></div>
+            <div class="analytics-chart-container" id="chart-crowd-density"></div>
+          </div>
+          <div class="glass-card">
+            <div class="card-header"><div class="card-title"><span class="card-tag">TRAN</span> Transit Wait Times</div></div>
+            <div class="analytics-chart-container" id="chart-transport-times"></div>
+          </div>
+        </div>
+        <div class="glass-card" style="margin-top:20px;">
+          <div class="card-header"><div class="card-title"><span class="card-tag">SUMM</span> Generative Executive Brief</div></div>
+          <div id="analytics-ai-report" style="line-height:1.6; font-size:0.92rem;"></div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- MODULE: SETTINGS -->
+      <!-- ============================================ -->
+      <section id="module-settings" class="viewport-module" aria-label="System Settings">
+        <div class="module-header">
+          <h2 class="module-title">Stadium OS Settings</h2>
+          <span class="module-subtitle">System configuration, API bindings, and simulation controls</span>
+        </div>
+        <div class="dashboard-grid">
+          <div class="glass-card">
+            <div class="card-header"><div class="card-title"><span class="card-tag">CONF</span> API &amp; Network Configuration</div></div>
+            <div class="settings-list">
+              <div class="settings-row">
+                <div class="settings-info">
+                  <label for="set-api-key" class="settings-label">Encrypted API Key</label>
+                  <span class="settings-desc">Secure non-hardcoded credential binding</span>
+                </div>
+                <input type="text" id="set-api-key" value="FIFA_AI_LOCAL_ORCHESTRATOR_v2.0" class="themed-input" style="width:220px; text-align:right;" disabled aria-label="API Key">
+              </div>
+              <div class="settings-row">
+                <div class="settings-info">
+                  <label for="set-endpoint" class="settings-label">Security Mesh Endpoint</label>
+                  <span class="settings-desc">Internal stadium API node</span>
+                </div>
+                <input type="text" id="set-endpoint" value="https://api.fifa2026.internal/v1/ops" class="themed-input" style="width:220px; text-align:right;" disabled aria-label="API Endpoint">
+              </div>
+            </div>
+          </div>
+          <div class="glass-card">
+            <div class="card-header"><div class="card-title"><span class="card-tag">SIM</span> Simulation Engine Controls</div></div>
+            <div class="settings-list">
+              <div class="settings-row">
+                <div class="settings-info">
+                  <span class="settings-label">Match Clock Multiplier</span>
+                  <span class="settings-desc">Speeds up telemetry simulation ticks</span>
+                </div>
+                <div style="display:flex; gap:6px;">
+                  <button class="speed-btn active" data-speed="1" aria-label="1x speed">1×</button>
+                  <button class="speed-btn" data-speed="2" aria-label="2x speed">2×</button>
+                  <button class="speed-btn" data-speed="5" aria-label="5x speed">5×</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- RIGHT PANEL: AI OPERATIONS ASSISTANT -->
+    <!-- ============================================ -->
+    <aside class="control-panel" aria-label="AI Operations Assistant">
+      <div class="ai-panel-header">
+        <span class="card-title">AI Operations Assistant</span>
+      </div>
+
+      <div class="ai-agent-tab-list" role="tablist" aria-label="AI Agent selector">
+        <button class="ai-agent-tab active" data-agent="unified" role="tab" aria-selected="true">Unified</button>
+        <button class="ai-agent-tab" data-agent="crowd" role="tab" aria-selected="false">Crowd</button>
+        <button class="ai-agent-tab" data-agent="navigation" role="tab" aria-selected="false">Nav</button>
+        <button class="ai-agent-tab" data-agent="emergency" role="tab" aria-selected="false">Safety</button>
+        <button class="ai-agent-tab" data-agent="volunteer" role="tab" aria-selected="false">Staff</button>
+        <button class="ai-agent-tab" data-agent="translation" role="tab" aria-selected="false">Translate</button>
+        <button class="ai-agent-tab" data-agent="sustainability" role="tab" aria-selected="false">Eco</button>
+        <button class="ai-agent-tab" data-agent="analytics" role="tab" aria-selected="false">Exec</button>
+      </div>
+
+      <div class="ai-agent-profile">
+        <div class="ai-avatar" id="sidebar-ai-avatar">
+          <div class="ai-avatar-glow" id="sidebar-ai-avatar-glow"></div>
+          <span aria-hidden="true">🤖</span>
+        </div>
+        <div class="ai-meta">
+          <div class="ai-name" id="sidebar-ai-name">Operations Orchestrator</div>
+          <div class="ai-status" id="sidebar-ai-status">
+            <span class="status-pulse green" aria-hidden="true"></span>
+            ONLINE · IDLE
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Insights cards -->
+      <div class="ai-insights" id="ai-insights-panel">
+        <div class="ai-insight-card warning" role="alert">
+          <span class="insight-icon">⚠️</span>
+          <div class="insight-content">
+            <div class="insight-title">Gate B Congestion Predicted</div>
+            <div class="insight-desc">Queue expected in 12 min. Redirect to Gate D.</div>
+          </div>
+        </div>
+        <div class="ai-insight-card info">
+          <span class="insight-icon">🌧</span>
+          <div class="insight-content">
+            <div class="insight-title">Rain Expected in 20 min</div>
+            <div class="insight-desc">Cover concourses and prepare rain gear stations.</div>
+          </div>
+        </div>
+        <div class="ai-insight-card ok">
+          <span class="insight-icon">✅</span>
+          <div class="insight-content">
+            <div class="insight-title">Gate D Now Open</div>
+            <div class="insight-desc">Additional capacity online. AI rerouting active.</div>
+          </div>
+        </div>
+        <div class="ai-insight-card critical">
+          <span class="insight-icon">🚑</span>
+          <div class="insight-content">
+            <div class="insight-title">Medical Response Slow</div>
+            <div class="insight-desc">Unit M-3 response time 4 min above target.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-chat-history" id="hud-assistant-chat" role="log" aria-live="polite" aria-label="AI agent conversation"></div>
+
+      <form class="ai-input-form" id="hud-assistant-form">
+        <input type="text" class="themed-input" id="hud-assistant-input" placeholder="Command active agent..." aria-label="Send prompt to AI agent">
+        <button class="ai-send-btn" type="submit" aria-label="Send">➔</button>
+      </form>
+    </aside>
+
+  </div>
+
+  <!-- Sequential scripts — no ES modules to avoid CORS on file:// -->
+  <script src="./js/utils.js"></script>
+  <script src="./js/crowd.js"></script>
+  <script src="./js/navigation.js"></script>
+  <script src="./js/fan.js"></script>
+  <script src="./js/emergency.js"></script>
+  <script src="./js/volunteer.js"></script>
+  <script src="./js/translation.js"></script>
+  <script src="./js/analytics.js"></script>
+  <script src="./js/app.js"></script>
+
+</body>
+</html>

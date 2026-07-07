@@ -1,0 +1,42 @@
+[
+  {
+    "keywords": ["washroom", "toilet", "restroom", "wc", "bathroom"],
+    "answer": "Restrooms are located on all concourses. Accessible facilities are available near Sections 101, 102, 104, 201, 203, and 204. Use the Smart Navigation tab to display the shortest route from your current section.",
+    "agent": "Navigation Agent"
+  },
+  {
+    "keywords": ["vegetarian", "vegan", "food", "eat", "meal", "halal", "kosher", "gluten"],
+    "answer": "Food Court North (near Section 201) and Concessions East offer full vegetarian, vegan, and gluten-free options. Halal certifed hotdogs and wraps are available at Concessions East. You can use the map to find concessions with green leaf badges.",
+    "agent": "Sustainability Agent"
+  },
+  {
+    "keywords": ["wheelchair", "accessible", "disabled", "elevator", "ramp", "stairs"],
+    "answer": "FIFA World Cup 2026 stadiums are fully accessible. Elevators are situated at Gates A, C, D, and E. Accessible ramps lead directly to lower bowl Sections 101-104. Rerouting functions in the Navigation panel will automatically plan avoiding stairs.",
+    "agent": "Navigation Agent"
+  },
+  {
+    "keywords": ["lost", "child", "missing", "separated", "kid", "find my"],
+    "answer": "If you have lost a child, please alert the nearest volunteer (wearing neon green vests) immediately or proceed to the Guest Services Desk at Gate A. Security protocol 'Alpha-Child' will be initiated to monitor all gates.",
+    "agent": "Emergency Agent"
+  },
+  {
+    "keywords": ["parking", "car", "vehicle", "drive", "garage", "park"],
+    "answer": "Official FIFA Parking Lots (P1-P4) require pre-booked passes. Lot P1 (North Entrance) has EV charging. Shuttle service runs from Lot P3 to Gate D. If parking is full, we recommend taking the Metro directly to the transit link at Gate C/East side.",
+    "agent": "Crowd Agent"
+  },
+  {
+    "keywords": ["seat", "find", "ticket", "row", "gate", "section"],
+    "answer": "Your ticket specifies your gate. Enter through the corresponding gate (e.g. Gate F for Northwest sections) to avoid long walks. Check your section number: Sections 101-104 are lower bowl, 201-204 are middle bowl, and 301+ are upper tier.",
+    "agent": "Navigation Agent"
+  },
+  {
+    "keywords": ["medical", "help", "sick", "hurt", "doctor", "first aid", "injury", "ambulance"],
+    "answer": "First aid stations are located near Gate B (Medical Station East) and Gate E (Medical Station West). In case of a severe medical emergency, notify any staff member, or press the 'Medical Alert' emergency button on our HUD.",
+    "agent": "Emergency Agent"
+  },
+  {
+    "keywords": ["sustainability", "eco", "green", "carbon", "recycling", "cup", "waste"],
+    "answer": "We aim for net-zero operations. Zero-waste bins are located throughout the concourses. Reusable souvenir cups can be refilled at any water station. Turnstiles and lights are powered by our rooftop solar array.",
+    "agent": "Sustainability Agent"
+  }
+]
