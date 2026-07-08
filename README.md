@@ -1,341 +1,374 @@
-# ⚽ FIFA AI Command Center
-### AI-Powered Stadium Operations & Decision Support Platform for FIFA World Cup 2026
+# ⚽ FIFA AI Command Center — Stadium Operations Platform (FIFA World Cup 2026)
 
-> An intelligent digital command center that assists stadium operators in monitoring crowd movement, coordinating emergency response, managing volunteers, guiding fans, and supporting multilingual communication through specialized AI agents.
+> **Category:** Real-Time Stadium Operations & Incident Orchestration  
+> **Theme:** AI-Powered Crowd Management, Emergency Response, Indoor Navigation & Operational Intelligence
 
----
-
-## 🌐 Live Demo
-
-**Live Website:**  
-> 🔗 https://prashun-web.github.io/promptwars6/
+An enterprise-ready, AI-powered Digital Twin platform designed for FIFA World Cup 2026 stadium operations. The system provides a unified command center for monitoring crowd movement, coordinating volunteers, responding to emergencies, guiding spectators, translating multilingual announcements, and delivering real-time operational analytics.
 
 ---
 
-## Project Preview
+# 🌐 Live Demo
 
-
-- Landing Boot Screen
-- Command Dashboard
-- Crowd Intelligence
-- Indoor Navigation
-- Emergency Operations
-- Volunteer Hub
-- Analytics Dashboard
+**🔗 Live Website:**  
+> **https://prashun-web.github.io/promptwars6/**
 
 ---
 
 # 📖 Overview
 
-FIFA AI Command Center is a browser-based Digital Twin platform designed to simulate the operations of a modern FIFA World Cup stadium.
+FIFA AI Command Center is a browser-based Digital Twin platform built to simulate the operations of a modern smart stadium.
 
-The platform combines multiple AI-powered modules into a unified command dashboard that enables operators to:
+The platform integrates multiple specialized AI agents into a centralized operations dashboard, enabling stadium operators to make informed decisions through real-time simulations, intelligent recommendations, and operational analytics.
 
-- Monitor live crowd density
-- Predict bottlenecks
-- Plan evacuation routes
-- Coordinate emergency response
-- Manage volunteers
-- Assist fans
-- Translate announcements
-- Analyze operational data
+Unlike traditional dashboards, the application follows a modular, event-driven architecture that separates business logic, presentation, and application control, making the platform easier to maintain, extend, and test.
 
-The system is designed to work completely offline without requiring any backend server.
+The application runs entirely on the client side and requires no backend infrastructure, making it suitable for demonstrations, simulations, and offline execution.
 
 ---
 
-# ✨ Features
+# 🚀 Core Features
 
-## 🖥️ Futuristic Boot Screen
+## 🏟️ Digital Twin Stadium
 
-Before accessing the dashboard, operators authenticate through a cinematic startup sequence.
+Interactive SVG stadium visualization featuring:
 
-Features include:
-
-- Terminal boot animation
-- System diagnostics
-- Biometric scan simulation
-- Manual operator login
-- Smooth dashboard unlock animation
-
----
-
-## 🏟️ Stadium Digital Twin
-
-Interactive stadium map including:
-
-- Gates A–F
-- Crowd density
-- Security status
+- Live gate telemetry
+- Crowd density monitoring
+- Queue visualization
+- Security status indicators
+- Interactive gate information
 - AI recommendations
-- Hover information cards
 
 ---
 
 ## 👥 Crowd Intelligence Agent
 
-Monitors:
+Analyzes stadium crowd conditions to:
 
-- Crowd congestion
-- Exit bottlenecks
-- Queue length
-- Crowd flow simulation
-
-Provides:
-
-- AI crowd insights
-- Gate recommendations
-- Rerouting suggestions
+- Detect congestion
+- Predict bottlenecks
+- Simulate pedestrian movement
+- Recommend rerouting strategies
+- Assist evacuation planning
 
 ---
 
 ## 🧭 Indoor Navigation Agent
 
-Provides smart route planning between stadium locations.
+Provides intelligent navigation throughout the stadium.
 
 Supports:
 
-- Fastest path
-- Accessible routes
-- Elevator routing
+- Shortest path routing
+- Accessible navigation
+- Elevator & ramp routing
 - Emergency evacuation paths
 
 ---
 
 ## 🚨 Emergency Operations Center
 
-Simulates real stadium emergencies.
+Simulates real-world operational scenarios including:
 
-Supported incidents include:
+- Medical emergencies
+- Fire incidents
+- Power failures
+- Crowd surges
+- Security threats
 
-- Power outage
-- Medical emergency
-- Fire alert
-- Crowd surge
+Automatically generates:
 
-Automatically activates:
-
-- Safety recommendations
-- Emergency checklists
-- Public announcements
-- Volunteer dispatch
+- AI response plans
+- Public Address announcements
+- Volunteer deployment
+- Incident summaries
 
 ---
 
 ## 🙋 Volunteer Management
 
-AI-assisted volunteer coordination.
+Coordinates stadium volunteers through:
 
-Features:
-
+- Task assignment
 - Shift management
-- Priority assignment
-- Emergency task allocation
-- Live status updates
+- Emergency prioritization
+- Operational tracking
 
 ---
 
 ## 🌍 AI Translation Assistant
 
-Instant translation for stadium announcements.
+Supports multilingual communication by translating:
 
-Useful for:
+- Public announcements
+- Emergency broadcasts
+- Visitor assistance messages
 
-- International visitors
-- Emergency announcements
-- Multilingual communication
-
+---
 
 ## 📊 Executive Analytics
 
-Provides operational insights including:
+Provides operational intelligence including:
 
-- Stadium occupancy
-- Crowd trends
-- Incident summaries
-- AI-generated reports
-
----
-
-# 🎨 User Experience
-
-The interface follows a futuristic FIFA mission-control design featuring:
-
-- Glassmorphism UI
-- Animated telemetry
-- Neon HUD interface
-- Live notifications
-- SVG telemetry animations
-- Interactive command panels
+- Occupancy statistics
+- Crowd analytics
+- Incident reports
+- Executive summaries
+- KPI dashboards
 
 ---
 
+# 🏆 Engineering Highlights
 
+The project was completely refactored from a monolithic implementation into a modular enterprise architecture designed around software engineering best practices.
 
-# 🤖 AI Agent Architecture
+### Key Improvements
 
-The application is composed of multiple specialized AI agents.
+- Modular layered architecture
+- Event-driven communication
+- Separation of business logic and presentation
+- Encapsulated application state
+- Secure DOM rendering
+- Input sanitization and validation
+- Memory-safe event pipeline
+- Performance-optimized rendering
+- Comprehensive automated testing
+
+---
+
+# 📂 Project Structure
+
+fif/
+├── index.html                   # Core layout framework (HTML5 Semantic Standards)
+├── css/
+│   └── style.css                # Premium styling (neon grids, glassmorphism, responsive grid layout)
+├── js/
+│   ├── app.js                   # Orchestrator — Bootstrapping & event wiring
+│   ├── utils.js                 # Unified static data store (free of credentials)
+│   ├── crowd.js                 # Crowd flow calculation agent
+│   ├── emergency.js             # Simulation desk & incident trigger agent
+│   ├── volunteer.js             # Logistics coordinator & steward task agent
+│   ├── navigation.js            # Pathfinding & route calculation agent
+│   ├── translation.js           # Multi-language dictionary translation agent
+│   ├── analytics.js             # Generative report executive dashboard agent
+│   │
+│   ├── core/                    # Core System Infrastructure
+│   │   ├── constants.js         # Single source of truth for stadium configs
+│   │   ├── EventBus.js          # Pub-sub engine with memory leak protection
+│   │   ├── SimState.js          # Encapsulated state storage with validation
+│   │   ├── Sanitizer.js         # Security utility (XSS escaping & input filtering)
+│   │   ├── DOMHelper.js         # Null-safe DOM manipulation and query wrapper
+│   │   └── Logger.js            # Consolidated logging operations engine
+│   │
+│   ├── views/                   # Presentation Layer (Rendering only)
+│   │   ├── CrowdView.js         # Renders gate rows, SVGs, and queue lists
+│   │   ├── EmergencyView.js     # Renders checklists and announcement scripts
+│   │   ├── VolunteerView.js    # Renders shift duties, battery states, and roster
+│   │   └── NavigationView.js   # Draws pathfinding routes on the stadium map SVG
+│   │
+│   └── controllers/             # Action & Coordination Layer
+│       ├── BootController.js    # Oversees log terminal displays and logins
+│       ├── TabRouter.js         # Switches dashboard tab modules
+│       ├── ClockController.js   # Drives real-time wall and countdown clocks
+│       ├── NotificationController.js # Displays transient toaster popup notifications
+│       ├── SimController.js     # Handles tick loop variables (e.g., weather shifts)
+│       └── StadiumMapController.js # Handles SVG click interactions & tooltips
+│
+└── tests/                       # Automated Testing Framework
+    ├── test-runner.html         # Visual dashboard output for test runs
+    ├── lib/
+    │   └── assert.js            # Zero-dependency, lightweight assertion framework
+    └── unit/                    # Isolated Unit Testing Suites
+        ├── Sanitizer.test.js
+        ├── EventBus.test.js
+        ├── SimState.test.js
+        ├── FanAgent.test.js
+        ├── TranslationAgent.test.js
+        ├── TroubleshooterMatcher.test.js
+        ├── NavigationAgent.test.js
+        └── AnalyticsAgent.test.js
+
+---
+
+# 🏛️ Architecture
+
+The application follows a layered architecture inspired by enterprise software systems.
+
+## Core Layer
+
+Provides reusable infrastructure used across the application.
+
+- EventBus
+- SimState
+- Logger
+- Sanitizer
+- DOMHelper
+- Constants
+
+---
+
+## AI Agent Layer
+
+Each AI module is responsible for a single operational domain.
 
 | Agent | Responsibility |
-|---------|---------------|
-| Crowd Agent | Crowd monitoring & congestion prediction |
-| Navigation Agent | Route planning & evacuation |
-| Emergency Agent | Incident management |
-| Volunteer Agent | Staff coordination |
-| Fan Assistant | Visitor support |
-| Translation Agent | Multilingual announcements |
-| Analytics Agent | Executive insights |
+|--------|----------------|
+| Crowd Agent | Crowd monitoring and congestion prediction |
+| Navigation Agent | Indoor routing and evacuation planning |
+| Emergency Agent | Incident management and response coordination |
+| Volunteer Agent | Staff allocation and logistics |
+| Fan Assistant | Stadium information and FAQ support |
+| Translation Agent | Multilingual communication |
+| Analytics Agent | Executive reports and KPI generation |
 
-Each agent communicates through shared global state, allowing coordinated decision-making across the platform.
+Agents communicate through an event-driven architecture rather than direct dependencies, improving scalability and maintainability.
 
 ---
 
-# ⚙️ Technical Highlights
+## View Layer
 
-- HTML5
-- CSS3
-- Vanilla JavaScript (ES6)
-- SVG Interactive Maps
-- Glassmorphism UI
-- Offline-first architecture
-- No external backend required
-- No database required
-- CORS-free execution
-- Local data embedding
-- Modular AI agent architecture
+Responsible exclusively for rendering information.
+
+Rendering modules include:
+
+- Crowd View
+- Emergency View
+- Volunteer View
+- Navigation View
+
+This separation ensures presentation logic remains independent from operational logic.
+
+---
+
+## Controller Layer
+
+Coordinates application behavior and user interaction.
+
+Controllers include:
+
+- Boot Controller
+- Simulation Controller
+- Clock Controller
+- Notification Controller
+- Stadium Map Controller
+- Tab Router
+
+The main application (`app.js`) acts only as the orchestrator responsible for wiring modules together.
+
+---
+
+# 🔐 Security
+
+The application incorporates several security improvements:
+
+- HTML sanitization
+- Input validation
+- XSS protection
+- Safe DOM rendering
+- Event delegation (no inline event handlers)
+- Encapsulated application state
+- Secure logging pipeline
+
+---
+
+# ⚡ Performance Optimizations
+
+Several optimizations were introduced to improve responsiveness and long-running simulations.
+
+- Debounced analytics rendering
+- Event-driven updates
+- Reduced DOM manipulation
+- Efficient SVG rendering
+- Memory-safe EventBus
+- Modular execution pipeline
+
+---
+
+# 🧪 Testing & Quality Assurance
+
+The project includes a browser-based automated testing framework with **170 automated assertions** validating the application's core functionality.
+
+## Test Coverage
+
+- EventBus
+- SimState
+- Sanitizer
+- Crowd Agent
+- Navigation Agent
+- Emergency Agent
+- Fan Assistant
+- Translation Agent
+- Volunteer workflows
+- Analytics
+
+## Running the Test Suite
+
+1. Open:
+
+```text
+tests/test-runner.html
+```
+
+2. Click:
+
+```text
+▶ Run All Tests
+```
+
+3. Verify all **170 automated assertions** complete successfully.
 
 ---
 
 # 🚀 Running the Project
 
-## Option 1 (Recommended)
+Simply open:
 
-Run the PowerShell server:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File start_server.ps1
-```
-
-Then open:
-
-```
-http://localhost:8000
-```
-
----
-
-## Option 2
-
-Simply open
-
-```
+```text
 index.html
 ```
 
-in a modern browser.
+in any modern web browser.
 
-The application is designed to work offline.
-
----
-
-# 🧪 Manual Testing
-
-### 1. Authentication
-
-- Observe startup logs
-- Click biometric scanner
-- Dashboard unlocks
+No installation, build tools, or backend server are required.
 
 ---
 
-### 2. Crowd Intelligence
+# 🛠️ Technologies Used
 
-- Select Gate F
-- Review congestion details
-- Trigger reroute instructions
+## Frontend
 
----
+- HTML5
+- CSS3
+- Vanilla JavaScript (ES6)
+- SVG
 
-### 3. Indoor Navigation
+## Software Architecture
 
-- Navigate from Gate B
-- Route to Restrooms North
-- Enable accessible routing
+- Layered Architecture
+- Event-Driven Design
+- Multi-Agent System
+- Digital Twin Simulation
 
----
+## Testing
 
-### 4. Emergency Simulation
-
-- Trigger Power Outage
-- Observe emergency response
-- Check volunteer priority updates
-- Clear alarms
-
----
-
-# 📈 Dashboard Modules
-
-- Dashboard
-- Crowd Intelligence
-- Indoor Navigation
-- Emergency Center
-- Volunteer Hub
-- Fan Assistant
-- AI Translator
-- Sustainability
-- Analytics
-- Reports
-- Settings
+- Browser-based Test Runner
+- Unit Testing
+- Integration Testing
 
 ---
 
 # 🎯 Use Cases
 
-- FIFA World Cup
-- Olympic venues
-- Smart stadiums
+- FIFA World Cup Stadium Operations
+- Olympic Venues
+- Smart Stadium Management
+- Convention Centers
 - Airports
-- Concert arenas
-- Convention centers
-- Emergency command centers
-
----
-
-# 🛠️ Future Improvements
-
-- Real-time IoT sensor integration
-- Computer vision crowd detection
-- AI-powered incident prediction
-- Digital ticket validation
-- GIS mapping
-- Wearable volunteer integration
-- Live weather integration
-- Predictive staffing
-
----
-
-# 👨‍💻 Built With
-
-- HTML5
-- CSS3
-- JavaScript
-- SVG
-- PowerShell
-
----
-
-# 🏆 Hackathon Vision
-
-This project demonstrates how AI-powered digital twin technology can improve stadium safety, operational efficiency, and visitor experience during large-scale sporting events like the FIFA World Cup.
+- Emergency Operations Centers
+- Large Public Event Management
 
 ---
 
 # 📄 License
 
-This project is created for educational and hackathon purposes.
-
----
-
-
-
-## ⭐ If you like this project, consider giving it a star!
+This project was developed for educational, research, and hackathon purposes.
