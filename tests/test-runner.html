@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIFA AI Command Center — Test Suite</title>
+  <style>
+    :root {
+      --bg:       #0a0e1a;
+      --surface:  #111827;
+      --border:   rgba(255,255,255,0.08);
+      --pass:     #00e676;
+      --fail:     #ff1744;
+      --blue:     #00d4ff;
+      --yellow:   #ffd600;
+      --text:     #e0e6f0;
+      --muted:    #6b7a99;
+      --mono:     'JetBrains Mono', 'Fira Code', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0f1b35 0%, #0d2451 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .header-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .header-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: 0.5px;
+    }
+
+    .header-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    #run-btn {
+      background: linear-gradient(135deg, #0048a8, var(--blue));
+      border: none;
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 10px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      letter-spacing: 0.5px;
+    }
+    #run-btn:hover { opacity: 0.85; }
+    #run-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .scoreboard {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .score-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      min-width: 80px;
+      justify-content: center;
+    }
+
+    .score-pill.pass { border-color: var(--pass); color: var(--pass); }
+    .score-pill.fail { border-color: var(--fail); color: var(--fail); }
+    .score-pill.total { border-color: var(--blue); color: var(--blue); }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 28px 24px;
+    }
+
+    #progress-bar-wrap {
+      height: 6px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 3px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    #progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--blue), var(--pass));
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    #status-msg {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+      font-family: var(--mono);
+      min-height: 20px;
+    }
+
+    #test-results {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    #test-results li {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      padding: 8px 14px;
+      border-radius: 6px;
+      line-height: 1.4;
+      border-left: 3px solid transparent;
+    }
+
+    li.test-pass {
+      background: rgba(0, 230, 118, 0.06);
+      border-left-color: var(--pass);
+      color: #a0c8a0;
+    }
+
+    li.test-fail {
+      background: rgba(255, 23, 68, 0.08);
+      border-left-color: var(--fail);
+      color: #f08080;
+    }
+
+    .suite-header {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-top: 20px;
+      margin-bottom: 6px;
+      padding-left: 4px;
+    }
+
+    #empty-state {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--muted);
+    }
+
+    #empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+    #empty-state p { font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-brand">
+    <div class="header-title">⚽ FIFA AI Command Center — Test Suite</div>
+    <div class="header-sub">In-browser unit tests · No build tools required</div>
+  </div>
+  <div class="scoreboard">
+    <div class="score-pill total" id="score-total">0 Tests</div>
+    <div class="score-pill pass"  id="score-pass" >0 Passed</div>
+    <div class="score-pill fail"  id="score-fail" >0 Failed</div>
+    <button id="run-btn">▶ Run All Tests</button>
+  </div>
+</header>
+
+<main>
+  <div id="progress-bar-wrap">
+    <div id="progress-bar"></div>
+  </div>
+  <div id="status-msg">Press "Run All Tests" to begin.</div>
+  <ul id="test-results">
+    <li>
+      <div id="empty-state">
+        <div class="icon">🧪</div>
+        <p>Test results will appear here after running the suite.</p>
+      </div>
+    </li>
+  </ul>
+</main>
+
+<!-- ── Core modules (must load before tests) ─────────────────────────── -->
+<script src="../js/core/constants.js"></script>
+<script src="../js/core/EventBus.js"></script>
+<script src="../js/core/SimState.js"></script>
+<script src="../js/core/Sanitizer.js"></script>
+<script src="../js/core/DOMHelper.js"></script>
+<script src="../js/core/Logger.js"></script>
+
+<!-- ── Data store ───────────────────────────────────────────────────── -->
+<script src="../js/utils.js"></script>
+
+<!-- ── Agent pure functions ─────────────────────────────────────────── -->
+<script src="../js/translation.js"></script>
+<script src="../js/fan.js"></script>
+<script src="../js/agents/TroubleshooterMatcher.js"></script>
+<script src="../js/navigation.js"></script>
+<script src="../js/analytics.js"></script>
+
+<!-- ── Test harness ─────────────────────────────────────────────────── -->
+<script src="./lib/assert.js"></script>
+
+<!-- ── Test suites ──────────────────────────────────────────────────── -->
+<script src="./unit/Sanitizer.test.js"></script>
+<script src="./unit/EventBus.test.js"></script>
+<script src="./unit/SimState.test.js"></script>
+<script src="./unit/TranslationAgent.test.js"></script>
+<script src="./unit/FanAgent.test.js"></script>
+<script src="./unit/TroubleshooterMatcher.test.js"></script>
+<script src="./unit/NavigationAgent.test.js"></script>
+<script src="./unit/AnalyticsAgent.test.js"></script>
+
+<script>
+  (function () {
+    'use strict';
+
+    var runBtn      = document.getElementById('run-btn');
+    var statusMsg   = document.getElementById('status-msg');
+    var progressBar = document.getElementById('progress-bar');
+    var scoreTotal  = document.getElementById('score-total');
+    var scorePass   = document.getElementById('score-pass');
+    var scoreFail   = document.getElementById('score-fail');
+    var resultsList = document.getElementById('test-results');
+
+    // Count total tests from describe blocks before run
+    var totalTests = 0;
+    var _suiteRefs = window._suites;   // internal (after assert.js loads _suites is private)
+
+    runBtn.addEventListener('click', function () {
+      runBtn.disabled    = true;
+      runBtn.textContent = '\u23F3 Running...';
+      statusMsg.textContent = 'Executing test suites...';
+      resultsList.innerHTML = '';
+      progressBar.style.width = '0%';
+
+      var startTime = Date.now();
+
+      window.runTests().then(function (results) {
+        var elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
+        var total   = results.passed + results.failed;
+
+        scoreTotal.textContent = total    + ' Tests';
+        scorePass.textContent  = results.passed + ' Passed';
+        scoreFail.textContent  = results.failed + ' Failed';
+        progressBar.style.width = (total > 0 ? (results.passed / total * 100) : 0) + '%';
+
+        if (results.failed === 0) {
+          statusMsg.textContent = '\u2705 All ' + results.passed + ' tests passed in ' + elapsed + 's.';
+          statusMsg.style.color = 'var(--pass)';
+        } else {
+          statusMsg.textContent = '\u274C ' + results.failed + ' test(s) failed out of ' + total + '. (' + elapsed + 's)';
+          statusMsg.style.color = 'var(--fail)';
+        }
+
+        runBtn.disabled    = false;
+        runBtn.textContent = '\u25B6 Run All Tests';
+      }).catch(function (err) {
+        statusMsg.textContent = 'Fatal error during test run: ' + err.message;
+        statusMsg.style.color = 'var(--fail)';
+        runBtn.disabled    = false;
+        runBtn.textContent = '\u25B6 Run All Tests';
+      });
+    });
+  }());
+</script>
+</body>
+</html>
